@@ -1,3 +1,3 @@
-def call(name){
-  echo "Hey ${name}, Welcome, how are u?, ${BUILD_NUMBER}, Git branch : ${GIT_BRANCH}"
+def call(name, branch, buildnumber){
+  echo "Hey ${name}, Welcome, how are u?, , Git branch is ${branch} : and build number is ${buildnumber} "
 }
