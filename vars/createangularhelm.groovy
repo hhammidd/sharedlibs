@@ -19,5 +19,5 @@ def call(image, version, environment) {
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // start to deploy
-    sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${version} --namespace=${environment}"
+    sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${version} --namespace=${environment}"
 }
