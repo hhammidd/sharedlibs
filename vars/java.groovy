@@ -2,14 +2,14 @@ def call(service_name, environment) {
 
     pipeline {
 
-        environment {
-            registry = "hhssaaffii/${service_name}"
-            registryCredential = ''
-            dockerImage = ''
-            //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
-            IMAGE = readMavenPom().getArtifactId()
-            VERSION = readMavenPom().getVersion()
-        }
+//        environment {
+//            registry = "hhssaaffii/${service_name}"
+//            registryCredential = ''
+//            dockerImage = ''
+//            //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
+//            IMAGE = readMavenPom().getArtifactId()
+//            VERSION = readMavenPom().getVersion()
+//        }
         agent any
         stages {
 //        stage("get version") {
