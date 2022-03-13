@@ -14,7 +14,7 @@ def call(image, version, environment) {
     sh "cp ~/apps/apps-helm-charts/helm-checkouts/${image}/code/helm.yml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps/values.yaml"
 
     // cpy secrets to chart dir
-    sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps/templates"
+//    sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps/templates"
     // remove unwanted code
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
