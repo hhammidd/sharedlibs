@@ -1,3 +1,3 @@
-def call(version) {
-    sh "docker build -t geo-sale-app:${version} ."
+def call(servicename) {
+    sh "docker build -t ${servicename}:3 ."
 }
