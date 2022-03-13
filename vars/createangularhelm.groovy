@@ -1,4 +1,4 @@
-def call(image) {
+def call(image, version, environment) {
     // remove the dir
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/.git"
@@ -19,5 +19,5 @@ def call(image) {
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // start to deploy
-    sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${IMAGE}/charts/angular-apps --set tag=${VERSION} --namespace=${environment}"
+    sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${version} --namespace=${environment}"
 }
