@@ -10,6 +10,9 @@ def call(image, version, environment) {
     // build image
     sh "docker build -t ${service_name}:${version}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code "
 
+    // push to docker hub
+    sh "docker push hhssaaffii/${service_name}:${version}"
+
     // remove unwanted image version TODO
 
     // checkout last Chart
