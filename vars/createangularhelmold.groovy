@@ -7,11 +7,6 @@ def call(image, version, environment) {
     // get the helm.yaml variables
     sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
-    // build image
-    sh "docker build -t ${service_name}:${version}  ~/apps/apps-helm-charts/helm-checkouts/code/${image} "
-
-    // remove unwanted image version TODO
-
     // checkout last Chart
     sh "git clone https://github.com/hhammidd/Charts.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
 
