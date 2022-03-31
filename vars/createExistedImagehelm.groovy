@@ -3,6 +3,9 @@ def call(image, version, environment) {
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/.git"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+    // get the helm.yaml variables
+    sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+
     // checkout last Chart
     sh "git clone https://github.com/hhammidd/Charts.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
 
