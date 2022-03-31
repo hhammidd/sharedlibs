@@ -8,7 +8,7 @@ def call(image, version, environment) {
     sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // build image
-    sh "docker build -t hhssaaffii/${service_name}:${version}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code "
+    sh "docker build -t hhssaaffii/${service_name}:${version}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // push to docker hub
     sh "docker push hhssaaffii/${service_name}:${version}"
