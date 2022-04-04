@@ -2,7 +2,7 @@ def call(image) {
     // remove the dir
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/.git"
-//    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // get the helm.yaml variables
     sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
