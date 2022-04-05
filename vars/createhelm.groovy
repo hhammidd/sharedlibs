@@ -26,8 +26,9 @@ def call(image) {
 //        // Now you have access to raw version string in pom.version
         // Based on your versioning scheme, automatically calculate the next one
 //
-        VERSION1 = "9"
+        def (value1, value2, value3) = '0.0.10'.tokenize( '.' )
 
+        VERSION1 = value3
     }
 
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
