@@ -24,7 +24,8 @@ def call(image) {
     // make a new version
     script {
         def (value1, value2, value3) = VERSION.tokenize( '.' )
-        VERSION1 = value3.toInteger() + 1
+        int VERSION1 = Integer.parseInt(value3)
+        VERSION1 = ++VERSION1
     }
 
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
