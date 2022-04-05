@@ -35,6 +35,6 @@ def call(image) {
 
     // go to directory push it
     sh "git add ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code/"
-    sh "git commit -m \'increament version to ${VERSION1}\' -- /root/apps/apps-helm-charts/helm-checkouts/${image}/code/"
+    sh "git commit -m \'increament version to ${VERSION1}\' --"
     sh "git push -u origin master"
 }
