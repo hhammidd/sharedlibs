@@ -23,19 +23,14 @@ def call(image) {
 
     // make a new version
     script {
-//        // Now you have access to raw version string in pom.version
-        // Based on your versioning scheme, automatically calculate the next one
-//
-        def (value1, value2, value3) = '0.0.10'.tokenize( '.' )
-
-        VERSION1 = value3
+        def (value1, value2, value3) = VERSION.tokenize('.')
     }
 
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
-    sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${VERSION1} versions:commit"
+    sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${value3} versions:commit"
 
     // go to directory push it
     sh "git add ."
-    sh "git commit -m \'increament version to ${VERSION1}\' --"
+    sh "git commit -m \'increament version to ${value3}\' --"
     sh "git push -u origin master"
 }
