@@ -34,7 +34,7 @@ def call(image) {
     sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${VERSION1} versions:commit"
 
     // go to directory push it
-    sh "git add ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code/"
+    sh "git add ."
     sh "git commit -m \'increament version to ${VERSION1}\' --"
     sh "git push -u origin master"
 }
