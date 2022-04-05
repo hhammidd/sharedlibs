@@ -23,14 +23,15 @@ def call(image) {
 
     // make a new version
     script {
-        def (value1, value2, value3) = VERSION.tokenize('.')
+        def (value1, value2, value3) = VERSION.tokenize( '.' )
+        VERSION1 = value3
     }
 
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
-    sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${value3} versions:commit"
+    sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${VERSION1} versions:commit"
 
     // go to directory push it
     sh "git add ."
-    sh "git commit -m \'increament version to ${value3}\' --"
+    sh "git commit -m \'increament version to ${VERSION1}\' --"
     sh "git push -u origin master"
 }
