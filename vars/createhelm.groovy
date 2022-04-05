@@ -24,7 +24,7 @@ def call(image) {
     // make a new version
     script {
         def (value1, value2, value3) = VERSION.tokenize( '.' )
-        int VERSION1 = Integer.parseInt(value3)
+        VERSION1 = Integer.parseInt(value3)
         VERSION1 = ++VERSION1
     }
 
