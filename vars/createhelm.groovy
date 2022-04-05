@@ -16,8 +16,23 @@ def call(image) {
     // cpy secrets to chart dir
     sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/springboot-services/templates"
     // remove unwanted code
-    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+//    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code" //TODO un comment if not working
 
     // start to deploy
     sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${IMAGE}/charts/springboot-services --set tag=${VERSION} --namespace=${environment}"
+
+    // make a new version
+    script {
+//        // Now you have access to raw version string in pom.version
+        // Based on your versioning scheme, automatically calculate the next one
+//
+        VERSION1 = "7"
+    }
+
+    sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
+    sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${VERSION1} versions:commit"
+
+    // go to directory push it
+    sh "git commit -m 'increament version to ${bla}' -- /root/apps/apps-helm-charts/helm-checkouts/${image}/code/"
+    sh "git push -u origin master"
 }
