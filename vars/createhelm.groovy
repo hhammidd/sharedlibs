@@ -26,13 +26,14 @@ def call(image) {
 //        // Now you have access to raw version string in pom.version
         // Based on your versioning scheme, automatically calculate the next one
 //
-        VERSION1 = "8"
+        VERSION1 = "9"
+
     }
 
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
     sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${VERSION1} versions:commit"
 
     // go to directory push it
-    sh "git commit -m 'increament version to ${VERSION1}' -- /root/apps/apps-helm-charts/helm-checkouts/${image}/code/"
+    sh "git commit -m \'increament version to ${VERSION1}\' -- /root/apps/apps-helm-charts/helm-checkouts/${image}/code/"
     sh "git push -u origin master"
 }
