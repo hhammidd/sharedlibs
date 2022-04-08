@@ -7,6 +7,12 @@ def call(image, version, environment) {
     // get the helm.yaml variables
     sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
+    script {
+        sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+        APP_VERSION = sh "node -e \"console.log(require('./package.json').version);\""
+        echo "${APP_VERSION}"
+    }
+
     // build image
     sh "docker build -t hhssaaffii/${service_name}:${version}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
