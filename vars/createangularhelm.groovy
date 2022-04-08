@@ -9,15 +9,15 @@ def call(image, version, environment) {
 
     script {
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-        def APP_VERSION = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
+        APP_VERSION = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
         currentBuild.description = "<b>environment: </b>TODO}<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
     }
 
     // build image
-    sh "docker build -t hhssaaffii/${service_name}:${version}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+    sh "docker build -t hhssaaffii/${service_name}:${APP_VERSION}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // push to docker hub
-    sh "docker push hhssaaffii/${service_name}:${version}"
+    sh "docker push hhssaaffii/${service_name}:${APP_VERSION}"
 
     // remove unwanted image version TODO
 
@@ -33,5 +33,5 @@ def call(image, version, environment) {
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // start to deploy
-    sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${version} --namespace=${environment}"
+    sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${APP_VERSION} --namespace=${environment}"
 }
