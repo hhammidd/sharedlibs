@@ -37,7 +37,7 @@ def call(image, version, environment) {
     // start to deploy // TODO
 //    sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${APP_VERSION} --namespace=${environment}"
 
-    sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
+    sh "cd ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
     // increase version an push
     sh "npm version patch"
     // make a new version
