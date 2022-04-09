@@ -32,8 +32,25 @@ def call(image, version, environment) {
     // cpy secrets to chart dir
 //    sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps/templates"
     // remove unwanted code
-    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+//    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // start to deploy
     sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${APP_VERSION} --namespace=${environment}"
+
+    sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
+    // increase version an push
+//    sh "npm version patch"
+    // make a new version
+    script {
+        def (value1, value2, value3) = VERSION.tokenize( '.' )
+        NEW_VERSION_ = sh(script: 'npm version patch', returnStdout: true)
+        NEW_VERSION = "${NEW_VERSION}".toString().substring(1)
+    }
+
+    // push
+    sh "git add ."
+    sh "git commit -m \'increament version to ${NEW_VERSION}\' --"
+    sh "git push -u origin master"
+
+
 }
