@@ -42,7 +42,6 @@ def call(image, version, environment) {
 //    sh "npm version patch"
     // make a new version
     script {
-        def (value1, value2, value3) = VERSION.tokenize( '.' )
         NEW_VERSION_ = sh(script: 'npm version patch', returnStdout: true)
         NEW_VERSION = "${NEW_VERSION}".toString().substring(1)
     }
