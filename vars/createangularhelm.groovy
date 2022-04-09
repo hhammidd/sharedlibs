@@ -34,8 +34,8 @@ def call(image, version, environment) {
     // remove unwanted code
 //    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
-    // start to deploy
-    sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${APP_VERSION} --namespace=${environment}"
+    // start to deploy // TODO
+//    sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${APP_VERSION} --namespace=${environment}"
 
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
     // increase version an push
