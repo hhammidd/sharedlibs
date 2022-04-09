@@ -28,7 +28,7 @@ def call(image) {
         VERSION1 = ++VERSION1
     }
 
-    sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
+    sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code" // TODO put {$image}
     sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${VERSION1} versions:commit"
 
     // go to directory push it
