@@ -10,9 +10,9 @@ def call(image, version, environment) {
     script {
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
         APP_VERSION1 = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
-        APP_VERSION = APP_VERSION1.toString()
+        APP_VERSION = "${APP_VERSION1}".toString()
         APP_VERSION = "0.0.0"
-        currentBuild.description = "<b>environment: </b>TODO}<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
+        currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
     }
 
     // build image
