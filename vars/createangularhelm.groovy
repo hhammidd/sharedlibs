@@ -39,11 +39,12 @@ def call(image, version, environment) {
 
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
     // increase version an push
-//    sh "npm version patch"
+    sh "npm version patch"
     // make a new version
     script {
-        NEW_VERSION_ = sh(script: 'npm version patch', returnStdout: true)
-        NEW_VERSION = "${NEW_VERSION}".toString().substring(1)
+//        NEW_VERSION_ = sh(script: 'npm version patch', returnStdout: true)
+//        NEW_VERSION = "${NEW_VERSION}".toString().substring(1)
+        NEW_VERSION = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
     }
 
     // push
