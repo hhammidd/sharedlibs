@@ -12,8 +12,9 @@ def call(image, version, environment) {
 //        NEW_VERSION = "${NEW_VERSION}".toString().substring(1)
 //            NEW_VERSION_ = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-        VERSION1 =
+        VERSION1 = "1"
         sh "npm version patch && git add . && git commit -m \\'increament version to 0.0.8\\' -- && git push -u origin master"
+        sh "git push -u origin master"
     }
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 //    def APP_VERSION = ""
