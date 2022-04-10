@@ -42,14 +42,14 @@ def call(image, version, environment) {
 //        NEW_VERSION = "${NEW_VERSION}".toString().substring(1)
 //            NEW_VERSION_ = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
             sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-            sh "npm version patch"
             VERSION1 = ++VERSION1
+            sh "npm version patch && git add . && git commit -m \\'increament version to 0.0.${VERSION1}\\' -- && git push -u origin master"
         }
 
 //        // push
-        sh "git add ."
-        sh "git commit -m \'increament version to 0.0.${VERSION1}\' --"
-        sh "git push -u origin master"
+//        sh "git add ."
+//        sh "git commit -m \'increament version to 0.0.${VERSION1}\' --"
+//        sh "git push -u origin master"
 
         sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 }
