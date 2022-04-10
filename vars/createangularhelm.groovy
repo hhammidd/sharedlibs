@@ -14,7 +14,7 @@ def call(image, version, environment) {
         APP_VERSION = "${APP_VERSION1}".toString()
 //        APP_VERSION = "0.0.0"
         def (value1, value2, value3) = APP_VERSION1.tokenize( '.' )
-        VERSION1 = Integer.parseInt(value3)
+        VERSION1 = Integer.parseInt(value3.trim())
         VERSION1 = ++VERSION1
         currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
     }
