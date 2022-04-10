@@ -19,9 +19,9 @@ def call(image, version, environment) {
         currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
     }
 //    / / build image
-    sh "docker build -t hhssaaffii/${image}:0.0.${VERSION1} ~/apps/apps-helm-charts/helm-checkouts/" + String.valueOf(image) + "/code"
+//    sh "docker build -t hhssaaffii/${image}:0.0.${VERSION1} ~/apps/apps-helm-charts/helm-checkouts/" + String.valueOf(image) + "/code"
 //    sh "docker build -t hhssaaffii/${service_name}:\"${APP_VERSION}\" ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-
+    sh "docker build -t hhssaaffii/${image}:0.0.${VERSION1}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
     // push to docker hub
     sh "docker push hhssaaffii/${image}:${APP_VERSION}" // TODO
 
