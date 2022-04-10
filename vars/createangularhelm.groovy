@@ -56,7 +56,7 @@ def call(image, version, environment) {
 
 //        // push
         sh "git add ."
-        sh "git commit -m \'increament version to ${VERSION1}\' --"
+        sh "git commit -m \'increament version to 0.0.${VERSION1}\' --"
         sh "git push -u origin master"
 
         sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
