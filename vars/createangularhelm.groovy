@@ -7,17 +7,17 @@ def call(image, version, environment) {
     // get the helm.yaml variables
     sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
-    script {
-        sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-//        APP_VERSION1 = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
-//        APP_VERSION = "${APP_VERSION1}".toString()
-        APP_VERSION = "6"
-//        currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
-    }
+//    script {
+//        sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+////        APP_VERSION1 = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
+////        APP_VERSION = "${APP_VERSION1}".toString()
+//        APP_VERSION = "6"
+////        currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
+//    }
 
 
     / / build image
-    sh "docker build -t hhssaaffii/${service_name}:${APP_VERSION} ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+    sh "docker build -t hhssaaffii/${service_name}:2 ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // push to docker hub
     sh "docker push hhssaaffii/${service_name}:${APP_VERSION}" // TODO
