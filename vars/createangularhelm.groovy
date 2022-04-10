@@ -12,15 +12,18 @@ def call(image, version, environment) {
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
         def APP_VERSION1 = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
         APP_VERSION = "${APP_VERSION1}".toString()
-        APP_VERSION = "0.0.0"
+//        APP_VERSION = "0.0.0"
+        def (value1, value2, value3) = APP_VERSION1.tokenize( '.' )
+        VERSION1 = Integer.parseInt(value3)
+        VERSION1 = ++VERSION1
         currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
     }
 //    / / build image
-    sh "docker build -t hhssaaffii/${image}:${APP_VERSION} ~/apps/apps-helm-charts/helm-checkouts/" + String.valueOf(image) + "/code"
+    sh "docker build -t hhssaaffii/${image}:0.0.${VERSION1} ~/apps/apps-helm-charts/helm-checkouts/" + String.valueOf(image) + "/code"
 //    sh "docker build -t hhssaaffii/${service_name}:\"${APP_VERSION}\" ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // push to docker hub
-    sh "docker push hhssaaffii/${service_name}:${APP_VERSION}" // TODO
+    sh "docker push hhssaaffii/${image}:${APP_VERSION}" // TODO
 
 
     // remove unwanted image version TODO
