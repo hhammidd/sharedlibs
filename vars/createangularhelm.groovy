@@ -25,7 +25,6 @@ def call(image, version, environment) {
     // push to docker hub
     sh "docker push hhssaaffii/${image}:${APP_VERSION}" // TODO
 
-
     // remove unwanted image version TODO
 
     // checkout last Chart
@@ -38,25 +37,27 @@ def call(image, version, environment) {
     // cpy secrets to chart dir
 //    sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps/templates"
     // remove unwanted code
-    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // start to deploy // TODO
-    sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set tag=${APP_VERSION} --namespace=${environment}"
+    sh " helm upgrade --install ${image}  ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps --set --namespace=${environment} tag=${APP_VERSION} "
 
 //        sh "cd /root/apps/apps-helm-charts/helm-checkouts/geo-sale-app/code/"
     // increase version an push
 //        sh "npm version patch"
     // make a new version
-//        script {
-////        NEW_VERSION_ = sh(script: 'npm version patch', returnStdout: true)
-////        NEW_VERSION = "${NEW_VERSION}".toString().substring(1)
+        script {
+//        NEW_VERSION_ = sh(script: 'npm version patch', returnStdout: true)
+//        NEW_VERSION = "${NEW_VERSION}".toString().substring(1)
 //            NEW_VERSION_ = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
-//        }
+            sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+            sh "npm version patch"
+            VERSION1 = ++VERSION1
+        }
 
 //        // push
-//        sh "git add ."
-//        sh "git commit -m \'increament version to ${NEW_VERSION_}\' --"
-//        sh "git push -u origin master"
+        sh "git add ."
+        sh "git commit -m \'increament version to ${VERSION1}\' --"
+        sh "git push -u origin master"
 
-
+        sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 }
