@@ -18,7 +18,8 @@ def call(image, version, environment) {
     }
     sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code/"
     sh "npm version patch"
-    sh "git add *"
+    sh "git add ."
+    sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code/"
     sh "git commit -m 'increament version to 0.0.8'"
     sh "git push"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
