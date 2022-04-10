@@ -11,7 +11,7 @@ def call(image, version, environment) {
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
         APP_VERSION1 = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
         APP_VERSION = "${APP_VERSION1}".toString()
-        APP_VERSION = "6"
+//        APP_VERSION = "6"
         currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
     }
 
@@ -32,7 +32,7 @@ def call(image, version, environment) {
     sh "cp ~/apps/apps-helm-charts/helm-checkouts/${image}/code/helm.yml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps/values.yaml"
 
     // cpy secrets to chart dir
-    sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps/templates"
+//    sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/angular-apps/templates"
     // remove unwanted code
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
