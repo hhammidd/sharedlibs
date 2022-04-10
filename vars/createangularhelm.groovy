@@ -16,7 +16,7 @@ def call(image, version, environment) {
 //    }
 
 
-    / / build image
+//    / / build image
     sh "docker build -t hhssaaffii/${service_name}:2 ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // push to docker hub
