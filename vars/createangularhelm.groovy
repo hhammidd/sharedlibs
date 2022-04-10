@@ -11,12 +11,12 @@ def call(image, version, environment) {
     script {
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
         def APP_VERSION1 = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
-        APP_VERSION = "${APP_VERSION1}".toString() + " ~/apps/apps-helm-charts/helm-checkouts/"
-//        APP_VERSION = "0.0.0"
+        APP_VERSION = "${APP_VERSION1}".toString()
+        APP_VERSION = "0.0.0"
         currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
     }
 //    / / build image
-    sh "docker build -t hhssaaffii/${image}:${APP_VERSION} " + String.valueOf(image) + "/code"
+    sh "docker build -t hhssaaffii/${image}:${APP_VERSION} ~/apps/apps-helm-charts/helm-checkouts/" + String.valueOf(image) + "/code"
 //    sh "docker build -t hhssaaffii/${service_name}:\"${APP_VERSION}\" ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // push to docker hub
