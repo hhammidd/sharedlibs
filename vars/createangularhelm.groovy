@@ -23,7 +23,7 @@ def call(image, version, environment) {
     // push to docker hub
     sh "docker push hhssaaffii/${service_name}:${APP_VERSION}" // TODO
 
-    }
+
     // remove unwanted image version TODO
 
     // checkout last Chart
