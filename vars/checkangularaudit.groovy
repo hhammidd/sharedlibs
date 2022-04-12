@@ -10,6 +10,7 @@ def call(image) {
 
     sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
     //    sh "npm i --package-lock-only" // No need maybe
+    sh "npm install -g npm"
     // check security
     sh "npm audit"
 }
