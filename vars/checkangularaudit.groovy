@@ -1,4 +1,4 @@
-def call() {
+def call(image) {
     // check security
     // remove the dir
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
