@@ -7,6 +7,9 @@ def call(image, version, environment) {
     // get the helm.yaml variables
     sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
+    // check security
+    sh "npm audit"
+
     def APP_VERSION = ""
     script { // get current version
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
