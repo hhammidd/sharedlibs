@@ -9,7 +9,7 @@ def call(image) {
     sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
+    //    sh "npm i --package-lock-only" // No need maybe
     // check security
-    sh "npm i --package-lock-only"
     sh "npm audit"
 }
