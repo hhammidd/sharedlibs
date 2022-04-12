@@ -13,7 +13,7 @@ def call(image, version, environment) {
 
     // TODO make 0.0.xxx dynamic
     sh "docker build -t hhssaaffii/${image}:0.0.${VERSION1}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-
+//docker build -t hhssaaffii/${image}:0.0.${VERSION1}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
     // push to docker hub
     sh "docker push hhssaaffii/${image}:${APP_VERSION}"
 
