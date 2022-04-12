@@ -1,19 +1,8 @@
 def call(image, version, environment) {
-    // remove the dir
-    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
-    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/.git"
-    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-
-    // get the helm.yaml variables
-    sh "git clone https://github.com/hhammidd/${image}.git  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     def APP_VERSION = ""
     script { // get current version
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-
-        // check security
-        sh "npm audit"
-
         def APP_VERSION1 = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
         APP_VERSION = "${APP_VERSION1}".toString()
 //        APP_VERSION = "0.0.0"
