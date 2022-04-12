@@ -10,5 +10,5 @@ def call(image) {
 
     sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
     // check security
-//    sh "npm audit"
+    sh "npm audit"
 }
