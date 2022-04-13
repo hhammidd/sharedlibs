@@ -8,7 +8,7 @@ def call(image, version, environment) {
 //        APP_VERSION = "0.0.0"
         def (value1, value2, value3) = APP_VERSION1.tokenize('.')
         VERSION1 = Integer.parseInt(value3.trim())
-        currentBuild.description = "<b>environment: </b>TODO<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
+        currentBuild.description = "<b>app-name: </b>${image}<br/><b>environment: </b>${environment}<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
     }
 
     // TODO make 0.0.xxx dynamic
