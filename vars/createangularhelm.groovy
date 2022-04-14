@@ -5,7 +5,6 @@ def call(image, version, environment) {
         sh "cd  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
         def APP_VERSION1 = sh(script: 'node -e "console.log(require(\'./package.json\').version);"', returnStdout: true)
         APP_VERSION = "${APP_VERSION1}".toString()
-//        APP_VERSION = "0.0.0"
         def (value1, value2, value3) = APP_VERSION1.tokenize('.')
         VERSION1 = Integer.parseInt(value3.trim())
         currentBuild.description = "<b>app-name: </b>${image}<br/><b>environment: </b>${environment}<br/><b>version:</b>${APP_VERSION}<br/><b>Image done:</b>TODO"
@@ -13,7 +12,6 @@ def call(image, version, environment) {
 
     // TODO make 0.0.xxx dynamic
     sh "docker build -t hhssaaffii/${image}:0.0.${VERSION1}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-//docker build -t hhssaaffii/${image}:0.0.${VERSION1}  ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
     // push to docker hub
     sh "docker push hhssaaffii/${image}:${APP_VERSION}"
 
