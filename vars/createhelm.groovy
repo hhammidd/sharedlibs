@@ -1,4 +1,4 @@
-def call(image, versionBuild, branch) {
+def call(image) {
     // remove the dir
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/.git"
@@ -13,24 +13,11 @@ def call(image, versionBuild, branch) {
     // replace spring boot helm.yml with value.yaml
     sh "cp ~/apps/apps-helm-charts/helm-checkouts/${image}/code/helm.yml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/springboot-services/values.yaml"
 
-    // cpy secrets to chart dir // TODO environment shoud be added
+    // cpy secrets to chart dir
     sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/springboot-services/templates"
+    // remove unwanted code
+    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
 
     // start to deploy
-    sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${IMAGE}/charts/springboot-services --set tag=${versionBuild} --namespace=${environment}"
-
-    // make a new version
-    script {
-        def (value1, value2, value3) = VERSION.tokenize( '.' )
-        VERSION1 = Integer.parseInt(value3)
-        VERSION1 = ++VERSION1
-    }
-
-    sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code" // TODO put {$image}
-    sh "mvn build-helper:parse-version versions:set -DnewVersion=0.0.${VERSION1} versions:commit"
-
-    // go to directory push it
-    sh "git add ."
-    sh "git commit -m \'increament version to ${VERSION1}\' --"
-    sh "git push -u origin master"
+    sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${IMAGE}/charts/springboot-services --set tag=${VERSION} --namespace=${environment}"
 }
