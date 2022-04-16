@@ -1,4 +1,4 @@
-def call(image) {
+def call(image, versionBuild, branch) {
     // remove the dir
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/.git"
@@ -17,7 +17,7 @@ def call(image) {
     sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/springboot-services/templates"
 
     // start to deploy
-    sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${IMAGE}/charts/springboot-services --set tag=${VERSION} --namespace=${environment}"
+    sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${IMAGE}/charts/springboot-services --set tag=${versionBuild} --namespace=${environment}"
 
     // make a new version
     script {
