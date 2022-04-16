@@ -4,11 +4,11 @@ def call(service_name, branch) {
 
     // if it  is env prd
     script {
-        if ( "prd" == branch?.trim()) {
-            sh "echo ${branch} here"
+        if ( "prd" == environment?.trim()) {
+            sh "echo ${environment} here"
             sh "mvn versions:set -DremoveSnapshot=true -DgenerateBackupPoms=false"
         } else {
-            sh "echo ${branch} there"
+            sh "echo ${environment} there"
             sh "mvn versions:set -DremoveSnapshot=true -DgenerateBackupPoms=false"
         }
     }
