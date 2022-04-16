@@ -1,4 +1,4 @@
-def call(image, version) {
+def call(image, version) { // TODO get branch def call(image, branch) {
     // remove the dir
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/.git"
@@ -17,6 +17,7 @@ def call(image, version) {
     sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/springboot-services/templates"
     // remove unwanted code
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
-
+    // TODO if the environment is tst, VERSION has SNAPSHOT, if deploy is PRD VERSION
+    //
     sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${service_name}/charts/springboot-services --set tag=${version} --namespace=${environment}"
 }
