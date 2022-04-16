@@ -1,6 +1,4 @@
 def call(service_name, version) {
-//def call(service_name, version, branch) {
-//    buildapp("${service_name}", "${version}", "${branch}")
     // TODO drop SNAPSHOT if it is PRD
     buildapp("${service_name}", "${environment}")
     script {
