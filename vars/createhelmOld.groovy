@@ -20,7 +20,6 @@ def call(image) {
 
     // start to deploy
     sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${IMAGE}/charts/springboot-services --set tag=${VERSION} --namespace=${environment}"
-
     // make a new version
     sh "mvn build-helper:parse-version versions:set -DnewVersion=\\${parsedVersion.majorVersion}.\\${parsedVersion.minorVersion}.\\${parsedVersion.nextIncrementalVersion} versions:commit"
 
@@ -28,5 +27,4 @@ def call(image) {
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/sale-point-service/code"
     sh "git commit -m 'increament version to ${bla}' -- /root/apps/apps-helm-charts/helm-checkouts/${image}/code/"
     sh "git push -u origin master"
-
 }
