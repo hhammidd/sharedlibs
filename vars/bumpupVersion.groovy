@@ -1,6 +1,6 @@
 def call(image, branch) {
     // make a new version
-    sh "mvn build-helper:parse-version versions:set -DnewVersion=\\${parsedVersion.majorVersion}.\\${parsedVersion.minorVersion}.\\${parsedVersion.nextIncrementalVersion}\\${parsedVersion.qualifier} versions:commit"
+    sh "mvn build-helper:parse-version versions:set -DnewVersion=\\${parsedVersion.majorVersion}.\\${parsedVersion.minorVersion}.\\${parsedVersion.nextIncrementalVersion}\\-SNAPSHOT versions:commit"
 
     // go to directory push it
     sh "cd ~/apps/apps-helm-charts/helm-checkouts/${image}/code"
