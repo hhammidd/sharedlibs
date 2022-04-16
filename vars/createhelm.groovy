@@ -13,10 +13,8 @@ def call(image) {
     // replace spring boot helm.yml with value.yaml
     sh "cp ~/apps/apps-helm-charts/helm-checkouts/${image}/code/helm.yml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/springboot-services/values.yaml"
 
-    // cpy secrets to chart dir
+    // cpy secrets to chart dir // TODO environment shoud be added
     sh "cp ~/apps/apps-helm-charts/secrets/${image}/secret.yaml ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/springboot-services/templates"
-    // remove unwanted code
-//    sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/code" //TODO un comment if not working
 
     // start to deploy
     sh " helm upgrade --install ${service_name}  ~/apps/apps-helm-charts/helm-checkouts/${IMAGE}/charts/springboot-services --set tag=${VERSION} --namespace=${environment}"
