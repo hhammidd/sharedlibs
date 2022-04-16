@@ -1,6 +1,6 @@
-def call(service_name, version) {
-    buildapp("${service_name}", {VERSION})
+def call(service_name, version, branch) {
+    buildapp("${service_name}", "${version}", "${branch}")
     script {
-        currentBuild.description = "<b>service name: </b>${service_name}<br/><b>environment: </b>${environment}<br/><b>version:</b>${VERSION}<br/><b>PR:</b>TODO"
+        currentBuild.description = "<b>branch: </b>${branch}<br/><b>environment: </b>${environment}<br/><b>version:</b>${VERSION}<br/><b>PR:</b>TODO"
     }
 }
