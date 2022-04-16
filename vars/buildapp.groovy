@@ -9,7 +9,6 @@ def call(service_name, branch) {
             sh "mvn versions:set -DremoveSnapshot=true -DgenerateBackupPoms=false"
         } else {
             sh "echo ${environment} there"
-            sh "mvn versions:set -DremoveSnapshot=true -DgenerateBackupPoms=false"
         }
     }
 
