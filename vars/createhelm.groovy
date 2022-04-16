@@ -1,4 +1,4 @@
-def call(image, version) {
+def call(image, version, branch) {
     // remove the dir
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts"
     sh "rm -rf ~/apps/apps-helm-charts/helm-checkouts/${image}/charts/.git"
